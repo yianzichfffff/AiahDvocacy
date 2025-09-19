@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enrollment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <button data-section="students" class="active">Students</button>
+    <button data-section="subjects">Subjects</button>
+    <button data-section="programs">Programs</button>
+    <button data-section="enrollment">Enrollment</button>
+  </nav>
+
+
+  <section id="students" class="active">
+    <h1>Students Dashboard</h1>
+    <form id="studentForm">
+  <input type="hidden" id="stud_id">
+  <input type="text" id="name" placeholder="Student Name" required>
+  <input type="text" id="program_id" placeholder="Program ID" required>
+  <input type="number" id="allowance" placeholder="Allowance" required>
+  <button type="submit">Save</button>
+</form>
+<button id="loadStudents">Load Students</button>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Program</th>
+      <th>Allowance</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="studentsTable"></tbody>
+</table>
+
+  </section>
+
+  <section id="subjects">
+    <h1>Subjects Dashboard</h1>
+    <form id="subjectForm">
+      <input type="hidden" id="subject_id">
+      <input type="text" id="subject_name" placeholder="Subject Name" required>
+      <input type="text" id="sem_id" placeholder="Semester ID" required>
+      <button type="submit">Save</button>
+    </form>
+    <button id="loadSubjects">Load Subjects</button>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Subject Name</th>
+          <th>Semester</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="subjectsTable"></tbody>
+    </table>
+  </section>
+
+  <section id="programs">
+    <h1>Programs Dashboard</h1>
+
+<form id="programForm">
+  <input type="hidden" id="program_id">
+  <input type="text" id="program_name" placeholder="Program Name" required>
+  <input type="text" id="ins_id" placeholder="Institute ID" required>
+  <button type="submit">Save</button>
+</form>
+<button id="loadPrograms">Load Programs</button>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Program Name</th>
+      <th>Institute ID</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="programsTable"></tbody>
+</table>
+
+<script src="program.js"></script>
+                            
+  </section>
+
+  <section id="enrollment">
+    <h1>Enrollment Dashboard</h1>
+
+<form id="enrollForm">
+  <input type="hidden" id="enroll_id">
+  <input type="text" id="stud_id" placeholder="Student ID" required>
+  <input type="text" id="subj_id" placeholder="Subject ID" required>
+  <input type="text" id="sem_id" placeholder="Semester ID" required>
+  <button type="submit">Save</button>
+</form>
+
+<button id="loadEnrollments">Load Enrollments</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Student ID</th>
+      <th>Subject ID</th>
+      <th>Semester ID</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="enrollmentsTable"></tbody>
+</table>
+
+  </section>
+
+  <script src="student.js"></script>
+  <script src="subjects.js"></script>
+
+  <script>
+    const navButtons = document.querySelectorAll("nav button");
+    const sections = document.querySelectorAll("section");
+
+    navButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+
+        navButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        sections.forEach(sec => sec.classList.remove("active"));
+
+        const secId = btn.getAttribute("data-section");
+        document.getElementById(secId).classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
